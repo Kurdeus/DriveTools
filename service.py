@@ -29,15 +29,5 @@ def drive_service():
     return build('drive', 'v3', credentials=creds)
 
 
-def uploadFile(filename, filepath, folderid):
-    mimetype = SetType(filepath)
-    file_metadata = {'name': filename,"parents": [folderid]}
-    media = MediaFileUpload(filepath,mimetype=mimetype)
-    file = drive_service().files().create(supportsTeamDrives=True,
-    body=file_metadata,
-    media_body=media,fields='id').execute()
-    return file
 
 
-
-uploadFile('filename', 'filepath', 'folderid')
